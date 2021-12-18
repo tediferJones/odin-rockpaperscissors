@@ -16,7 +16,9 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     
-    if (playerSelection === "rock") {
+    let newPlayerSelection = playerSelection.toLowerCase()
+
+    if (newPlayerSelection === "rock") {
         if (computerSelection === "scissors") {
             return "You Win, Rock Beats Scissors"
         } else if (computerSelection === "paper") {
@@ -25,7 +27,7 @@ function playRound(playerSelection, computerSelection) {
             return "Its a Tie, Rock ties Rock"
         }
 
-    } else if (playerSelection === "paper") {
+    } else if (newPlayerSelection === "paper") {
         if (computerSelection === "rock") {
             return "You Win, Paper Beats Rock"
         } else if (computerSelection === "scissors") {
@@ -33,7 +35,7 @@ function playRound(playerSelection, computerSelection) {
         } else if (computerSelection === "paper") {
             return "Its a Tie, Paper ties Paper"
         }
-    } else if (playerSelection === "scissors") {
+    } else if (newPlayerSelection === "scissors") {
         if (computerSelection === "paper") {
             return "You Win, Scissors Beats Paper"
         } else if (computerSelection === "rock") {
@@ -44,6 +46,16 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = computerPlay()
-const computerSelection = computerPlay()
-console.log(playRound(playerSelection,computerSelection))
+// This shit dont work, only iterates one time, should loop 5 times
+function game () {
+    i = 0
+    while (i<4) {
+        i++
+        return playRound(playerSelection, computerSelection) + i
+    }
+}
+
+let playerSelection = "SCISSORS"
+let computerSelection = computerPlay()
+
+console.log(game())     
