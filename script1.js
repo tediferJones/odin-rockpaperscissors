@@ -20,28 +20,28 @@ function playRound(playerSelection, computerSelection) {
 
     if (newPlayerSelection === "rock") {
         if (computerSelection === "scissors") {
-            return "You Win, Rock Beats Scissors"
+            return 1 //"You Win, Rock Beats Scissors"
         } else if (computerSelection === "paper") {
-            return "You Lose, Paper Beats Rock "
+            return -1 //"You Lose, Paper Beats Rock "
         } else if (computerSelection === "rock") {
-            return "Its a Tie, Rock ties Rock"
+            return 0 //"Its a Tie, Rock ties Rock"
         }
 
     } else if (newPlayerSelection === "paper") {
         if (computerSelection === "rock") {
-            return "You Win, Paper Beats Rock"
+            return 1 //"You Win, Paper Beats Rock"
         } else if (computerSelection === "scissors") {
-            return "You Lose, Scissors Beats Paper"
+            return -1 //"You Lose, Scissors Beats Paper"
         } else if (computerSelection === "paper") {
-            return "Its a Tie, Paper ties Paper"
+            return 0 //"Its a Tie, Paper ties Paper"
         }
     } else if (newPlayerSelection === "scissors") {
         if (computerSelection === "paper") {
-            return "You Win, Scissors Beats Paper"
+            return 1 //"You Win, Scissors Beats Paper"
         } else if (computerSelection === "rock") {
-            return "You Lose, Rock Beats Scissors"
+            return -1 //"You Lose, Rock Beats Scissors"
         } else if (computerSelection === "scissors") {
-            return "Its a Tie, Scissors ties Scissors"
+            return 0 //"Its a Tie, Scissors ties Scissors"
         }
     }
 }
@@ -49,13 +49,38 @@ function playRound(playerSelection, computerSelection) {
 // This shit dont work, only iterates one time, should loop 5 times
 function game () {
     i = 0
-    while (i<4) {
+    while (i <= 4) {
+        playRound(playerSelection, computerSelection)
+        console.log(i)
         i++
-        return playRound(playerSelection, computerSelection) + i
+        //return playRound(playerSelection, computerSelection) + i
     }
+}
+
+function game001 () {
+    let playerPoints = 0
+    let computerPoints = 0
+
+    if (playRound(playerSelection, computerSelection) === 1) {
+        playerPoints++
+    } else if (playRound(playerSelection, computerSelection) === -1) {
+        computerPoints++
+    } else {
+        return
+    }
+    playRound(playerSelection, computerSelection)
+    playRound(playerSelection, computerSelection)
+    playRound(playerSelection, computerSelection)
+    playRound(playerSelection, computerSelection)
+
+    console.log(playerPoints + " vs. " + computerPoints)
 }
 
 let playerSelection = "SCISSORS"
 let computerSelection = computerPlay()
 
-console.log(game())     
+console.log(playRound(playerSelection, computerSelection))
+
+console.log(game001())  
+
+console.log("end of program")
