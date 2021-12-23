@@ -1,5 +1,3 @@
-let y = "poopoodoodoo"
-
 
 function computerPlay() {
     let randomNumber = Math.round(Math.random()*10)
@@ -11,12 +9,14 @@ function computerPlay() {
     } else {
         return "scissors"
     }
-    return "" + randomNumber
+    return
 }
 
 function playRound(playerSelection, computerSelection) {
     
     let newPlayerSelection = playerSelection.toLowerCase()
+
+    // console.log(computerSelection)
 
     if (newPlayerSelection === "rock") {
         if (computerSelection === "scissors") {
@@ -46,41 +46,38 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// This shit dont work, only iterates one time, should loop 5 times
-function game () {
-    i = 0
-    while (i <= 4) {
-        playRound(playerSelection, computerSelection)
-        console.log(i)
-        i++
-        //return playRound(playerSelection, computerSelection) + i
-    }
-}
 
-function game001 () {
+function game () {
     let playerPoints = 0
     let computerPoints = 0
+    
+    // First player to get 3 wins is essentially the same as "best of 5 rounds", 
+    // but eliminates the possibility of a game like a 2 on 2 with a final round tie
+    //      
+    while (playerPoints < 3 && computerPoints < 3) {
+        roundResult = playRound("rock",computerPlay())
+        
+        if (roundResult === 1) {
+            playerPoints++
+        } else if (roundResult === -1) {
+            computerPoints++
+        }
 
-    if (playRound(playerSelection, computerSelection) === 1) {
-        playerPoints++
-    } else if (playRound(playerSelection, computerSelection) === -1) {
-        computerPoints++
-    } else {
-        return
+        // console.log(playerPoints + " vs " + computerPoints)  
+
+        if (playerPoints === 3 ) {
+            return "WINNER"
+        } else if (computerPoints === 3) {
+            return "LOSER"
+        }
     }
-    playRound(playerSelection, computerSelection)
-    playRound(playerSelection, computerSelection)
-    playRound(playerSelection, computerSelection)
-    playRound(playerSelection, computerSelection)
-
-    console.log(playerPoints + " vs. " + computerPoints)
 }
 
-let playerSelection = "SCISSORS"
-let computerSelection = computerPlay()
+//let playerSelection = "SCISSORS"
+//let computerSelection = computerPlay()
 
-console.log(playRound(playerSelection, computerSelection))
-
-console.log(game001())  
+//console.log(playRound(playerSelection, computerSelection))
+         
+console.log(game())   
 
 console.log("end of program")
