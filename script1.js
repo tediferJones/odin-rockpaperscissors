@@ -13,10 +13,8 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    
-    let newPlayerSelection = playerSelection.toLowerCase()
 
-    // console.log(computerSelection)
+    let newPlayerSelection = playerSelection.toLowerCase()
 
     if (newPlayerSelection === "rock") {
         if (computerSelection === "scissors") {
@@ -55,15 +53,14 @@ function game () {
     // but eliminates the possibility of a game like a 2 on 2 with a final round tie
     //      
     while (playerPoints < 3 && computerPoints < 3) {
-        roundResult = playRound("rock",computerPlay())
-        
+ 
+        roundResult = playRound(prompt("Please Enter Rock, Paper, or Scissors"),computerPlay())
+        console.log(roundResult)
         if (roundResult === 1) {
             playerPoints++
         } else if (roundResult === -1) {
             computerPoints++
         }
-
-        // console.log(playerPoints + " vs " + computerPoints)  
 
         if (playerPoints === 3 ) {
             return "WINNER"
