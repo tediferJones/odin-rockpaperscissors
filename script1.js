@@ -55,12 +55,14 @@ function game () {
     while (playerPoints < 3 && computerPoints < 3) {
  
         roundResult = playRound(prompt("Please Enter Rock, Paper, or Scissors"),computerPlay())
-        console.log(roundResult)
+        
         if (roundResult === 1) {
             playerPoints++
         } else if (roundResult === -1) {
             computerPoints++
         }
+
+        console.log(playerPoints + " vs. " + computerPoints)
 
         if (playerPoints === 3 ) {
             return "WINNER"
@@ -69,11 +71,6 @@ function game () {
         }
     }
 }
-
-//let playerSelection = "SCISSORS"
-//let computerSelection = computerPlay()
-
-//console.log(playRound(playerSelection, computerSelection))
          
 console.log(game())   
 
