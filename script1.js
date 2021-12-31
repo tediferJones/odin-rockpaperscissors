@@ -74,4 +74,3 @@ function game () {
          
 console.log(game())   
 
-console.log("end of program")
