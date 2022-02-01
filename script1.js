@@ -9,10 +9,10 @@ function computerPlay() {
     } else {
         return "scissors"
     }
-    return
 }
 
 function playRound(playerSelection, computerSelection) {
+    console.log(playerSelection + " vs " + computerSelection)
 
     let newPlayerSelection = playerSelection.toLowerCase()
 
@@ -71,6 +71,72 @@ function game () {
         }
     }
 }
+
+let playerScore = 0
+let computerScore = 0
+
+const rockbtnvar = document.querySelector("#rockbtn");
+rockbtnvar.addEventListener("click", () => {
+    let result = playRound("rock", computerPlay());
+
+    if (playerScore < 5 && computerScore < 5) {
+        if (result === 1) {
+            score.textContent = "You have " + ++playerScore + " and the computer has " + computerScore;
+        } else if (result === -1) {
+            score.textContent = "You have " + playerScore + " and the computer has " + ++computerScore;
+        }
+    } 
+    if (playerScore === 5) {
+        score.textContent = "You Won!"
+    } else if (computerScore === 5) {
+        score.textContent = "The Computer Won"
+    }
+})
+
+const paperbtnvar = document.querySelector("#paperbtn");
+paperbtnvar.addEventListener("click", () => {
+    let result = playRound("paper", computerPlay());
+
+    if (playerScore < 5 && computerScore < 5) {
+        if (result === 1) {
+            score.textContent = "You have " + ++playerScore + " and the computer has " + computerScore;
+        } else if (result === -1) {
+            score.textContent = "You have " + playerScore + " and the computer has " + ++computerScore;
+        }
+    }
+    if (playerScore === 5) {
+        score.textContent = "You Won!"
+    } else if (computerScore === 5) {
+        score.textContent = "The Computer Won"
+    }
+})
+
+const scissorsbtnvar = document.querySelector("#scissorsbtn");
+scissorsbtnvar.addEventListener("click", () => {
+    let result = playRound("scissors", computerPlay());
+    
+    if (playerScore < 5 && computerScore < 5) {
+        if (result === 1) {
+            score.textContent = "You have " + ++playerScore + " and the computer has " + computerScore;
+        } else if (result === -1) {
+            score.textContent = "You have " + playerScore + " and the computer has " + ++computerScore;
+        }
+    }
+    if (playerScore === 5) {
+        score.textContent = "You Won!"
+    } else if (computerScore === 5) {
+        score.textContent = "The Computer Won"
+    }
+})
+
+const containervar = document.querySelector("#container");
+
+const score = document.createElement("div");
+score.classList.add("scoreboard");
+score.textContent = "Click any button to start the game";
+
+containervar.appendChild(score);
+
          
-console.log(game())   
+//console.log(game())   
 
