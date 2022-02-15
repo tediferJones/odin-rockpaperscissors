@@ -1,0 +1,52 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#container {
+    height: 75%;
+    width: 75%;
+    padding: 64px;
+    border-radius: 16px;
+
+    background-color: cyan;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#btnContainer {
+    margin: 128px;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.roundResult,
+.currentScore {
+    display: flex;
+    justify-content: center;
+}
+
+.currentScore {
+    margin: 48px;
+}
+
+.resetBtn {
+    height: 64px;
+    background-color: magenta;
+}
+
+button {
+    height: 192px;
+    width: 192px;
+    border-radius: 16px;
+    font-size: 24px;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}

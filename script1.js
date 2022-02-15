@@ -44,99 +44,72 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-
-function game () {
-    let playerPoints = 0
-    let computerPoints = 0
-    
-    // First player to get 3 wins is essentially the same as "best of 5 rounds", 
-    // but eliminates the possibility of a game like a 2 on 2 with a final round tie
-    //      
-    while (playerPoints < 3 && computerPoints < 3) {
- 
-        roundResult = playRound(prompt("Please Enter Rock, Paper, or Scissors"),computerPlay())
-        
-        if (roundResult === 1) {
-            playerPoints++
-        } else if (roundResult === -1) {
-            computerPoints++
-        }
-
-        console.log(playerPoints + " vs. " + computerPoints)
-
-        if (playerPoints === 3 ) {
-            return "WINNER"
-        } else if (computerPoints === 3) {
-            return "LOSER"
-        }
-    }
-}
-
 let playerScore = 0
 let computerScore = 0
 
-const rockbtnvar = document.querySelector("#rockbtn");
-rockbtnvar.addEventListener("click", () => {
-    let result = playRound("rock", computerPlay());
+function game001 (choice) {
+    let result = playRound(choice, computerPlay());
 
     if (playerScore < 5 && computerScore < 5) {
         if (result === 1) {
-            score.textContent = "You have " + ++playerScore + " and the computer has " + computerScore;
+            roundResult.textContent = "You Won This Round";
+            ++playerScore;
         } else if (result === -1) {
-            score.textContent = "You have " + playerScore + " and the computer has " + ++computerScore;
+            roundResult.textContent = "The Computer Won This Round";
+            ++computerScore;
+        } else if (result === 0) {
+            roundResult.textContent = "That round was a tie!"
         }
     } 
     if (playerScore === 5) {
-        score.textContent = "You Won!"
+        roundResult.textContent = "You Won The Game!"
     } else if (computerScore === 5) {
-        score.textContent = "The Computer Won"
+        roundResult.textContent = "The Computer Won The Game"
     }
+    currentScore.textContent = playerScore + " vs " + computerScore;
+    
+}
+
+function reset() {
+    console.log("RESET FUNCTION")
+    playerScore = 0;
+    computerScore = 0;
+    roundResult.textContent = "Click any button to start the game";
+    currentScore.textContent = null
+}
+
+const rockbtnvar = document.querySelector("#rockbtn");
+rockbtnvar.addEventListener("click", () => {
+    game001("rock");
 })
 
 const paperbtnvar = document.querySelector("#paperbtn");
 paperbtnvar.addEventListener("click", () => {
-    let result = playRound("paper", computerPlay());
-
-    if (playerScore < 5 && computerScore < 5) {
-        if (result === 1) {
-            score.textContent = "You have " + ++playerScore + " and the computer has " + computerScore;
-        } else if (result === -1) {
-            score.textContent = "You have " + playerScore + " and the computer has " + ++computerScore;
-        }
-    }
-    if (playerScore === 5) {
-        score.textContent = "You Won!"
-    } else if (computerScore === 5) {
-        score.textContent = "The Computer Won"
-    }
+    game001("paper");
 })
 
 const scissorsbtnvar = document.querySelector("#scissorsbtn");
 scissorsbtnvar.addEventListener("click", () => {
-    let result = playRound("scissors", computerPlay());
-    
-    if (playerScore < 5 && computerScore < 5) {
-        if (result === 1) {
-            score.textContent = "You have " + ++playerScore + " and the computer has " + computerScore;
-        } else if (result === -1) {
-            score.textContent = "You have " + playerScore + " and the computer has " + ++computerScore;
-        }
-    }
-    if (playerScore === 5) {
-        score.textContent = "You Won!"
-    } else if (computerScore === 5) {
-        score.textContent = "The Computer Won"
-    }
+    game001("scissors");
+})
+
+
+const roundResult = document.createElement("div");
+roundResult.classList.add("roundResult");
+roundResult.textContent = "Click any button to start the game";
+
+const currentScore = document.createElement("div");
+currentScore.classList.add("currentScore");
+
+const resetBtn = document.createElement("button");
+resetBtn.classList.add("resetBtn");
+resetBtn.textContent = "Play Again?";
+resetBtn.addEventListener("click", () => {
+    reset()
 })
 
 const containervar = document.querySelector("#container");
 
-const score = document.createElement("div");
-score.classList.add("scoreboard");
-score.textContent = "Click any button to start the game";
-
-containervar.appendChild(score);
-
-         
-//console.log(game())   
-
+containervar.appendChild(roundResult);
+containervar.appendChild(currentScore);
+containervar.appendChild(resetBtn);
